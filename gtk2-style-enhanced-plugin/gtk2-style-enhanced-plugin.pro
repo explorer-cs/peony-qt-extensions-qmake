@@ -1,15 +1,15 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2019-11-27T09:45:26
+# Project created by QtCreator 2019-11-13T10:58:32
 #
 #-------------------------------------------------
 
 QT       += widgets
 
-TARGET = peony-qt-engrampa-menu-plugin
+TARGET = gtk2-style-enhanced-plugin
 TEMPLATE = lib
 
-DEFINES += PEONYQTENGRAMPAMENUPLUGIN_LIBRARY
+DEFINES += GTK2STYLEENHANCEDPLUGIN_LIBRARY
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -22,24 +22,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-CONFIG += link_pkgconfig
-
-PKGCONFIG += peony-qt
-
-TRANSLATIONS = translations/peony-qt-engrampa-menu-extension_zh_CN.ts
-
+PKGCONFIG +=gio-2.0 glib-2.0 gio-unix-2.0 peony-qt
+CONFIG += c++11 link_pkgconfig no_keywords
 
 SOURCES += \
-    engrampa-menu-plugin.cpp
+        gtk2-style-enhanced-plugin.cpp
 
 HEADERS += \
-        engrampa-menu-plugin.h \
-        peony-qt-engrampa-menu-plugin_global.h 
+        gtk2-style-enhanced-plugin.h \
+        gtk2-style-enhanced-plugin_global.h
 
 unix {
     target.path = /usr/lib/peony-qt-extensions
     INSTALLS += target
 }
-
-RESOURCES += \
-    peony-qt-engrampa-menu.qrc
