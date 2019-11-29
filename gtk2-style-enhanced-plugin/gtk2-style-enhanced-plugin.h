@@ -7,6 +7,7 @@
 #include <QObject>
 #include <QtPlugin>
 
+#include <gtk/gtk.h>
 
 namespace Peony {
 
@@ -17,6 +18,7 @@ class GTK2STYLEENHANCEDPLUGINSHARED_EXPORT Gtk2StyleEnhancedPlugin : public QObj
     Q_INTERFACES(Peony::StylePluginIface)
 public:
     explicit Gtk2StyleEnhancedPlugin(QObject *parent = nullptr);
+    ~Gtk2StyleEnhancedPlugin();
 
     PluginInterface::PluginType pluginType() {return PluginInterface::StylePlugin;}
     const QString name() {return tr("Gtk theme enhanced extension");}
@@ -29,8 +31,16 @@ public:
 
     QProxyStyle *getStyle();
 
+protected:
+    static void icon_theme_changed_cb(GtkIconTheme *theme, Gtk2StyleEnhancedPlugin *p_this);
+
 private:
     bool m_enable;
+    GtkIconTheme *m_gtk_icon_theme;
+    GtkSettings *m_gtk_settings;
+    QString m_icon_theme_name;
+
+    QTimer *m_timer;
 };
 
 }
