@@ -36,11 +36,20 @@ Gtk2StyleEnhancedPlugin::Gtk2StyleEnhancedPlugin(QObject *parent) : QObject(pare
     m_timer->setSingleShot(false);
     connect(m_timer, &QTimer::timeout, this, [=](){
         GtkSettings *settings = gtk_settings_get_default();
+        if (!GTK_IS_SETTINGS(settings))
+            return;
+
         gchararray value;
         g_object_get(settings, "gtk-icon-theme-name", &value, NULL);
         QString str = QString::fromUtf8(value);
-        qDebug()<<str;
-        g_free(value);
+        //qDebug()<<str;
+        if (value) {
+            g_free(value);
+            //qDebug()<<value;
+        } else {
+            return;
+        }
+
         if (str != m_icon_theme_name) {
             m_icon_theme_name = str;
             QIcon::setThemeName(m_icon_theme_name);
