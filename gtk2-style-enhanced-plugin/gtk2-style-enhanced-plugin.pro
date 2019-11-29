@@ -25,6 +25,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 PKGCONFIG +=gio-2.0 glib-2.0 gio-unix-2.0 peony-qt
 CONFIG += c++11 link_pkgconfig no_keywords
 
+DESTDIR += ../../testdir
+
 SOURCES += \
         gtk2-style-enhanced-plugin.cpp
 

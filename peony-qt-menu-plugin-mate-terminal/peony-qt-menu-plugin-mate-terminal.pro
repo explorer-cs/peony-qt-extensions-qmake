@@ -26,6 +26,8 @@ PKGCONFIG +=gio-2.0 glib-2.0 gio-unix-2.0 peony-qt
 CONFIG += c++11 link_pkgconfig no_keywords
 LIBS += -L$$PWD/../../libpeony-qt/ -lpeony-qt
 
+DESTDIR += ../../testdir
+
 SOURCES += \
         mate-terminal-menu-plugin.cpp
 
