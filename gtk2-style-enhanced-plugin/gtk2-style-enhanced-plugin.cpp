@@ -4,6 +4,7 @@
 #include <QIcon>
 #include <QTimer>
 #include <QApplication>
+#include <QTranslator>
 
 #include <QDebug>
 
@@ -26,6 +27,11 @@ void Gtk2StyleEnhancedPlugin::icon_theme_changed_cb(GtkIconTheme *theme, Gtk2Sty
 
 Gtk2StyleEnhancedPlugin::Gtk2StyleEnhancedPlugin(QObject *parent) : QObject(parent)
 {
+    QTranslator *t = new QTranslator(this);
+    qDebug()<<"system().name:"<<QLocale::system().name();
+    qDebug()<<"\n\n\n\n\n\n\ntranslate:"<<t->load(":/translations/gtk2-style-enhanced-plugin-extension_"+QLocale::system().name());
+    QApplication::installTranslator(t);
+
     QIcon::setFallbackThemeName("hicolor");
     m_gtk_icon_theme = gtk_icon_theme_get_default();
     m_gtk_settings = gtk_settings_get_default();

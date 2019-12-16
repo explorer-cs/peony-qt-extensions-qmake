@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 PKGCONFIG +=gio-2.0 glib-2.0 gio-unix-2.0 peony-qt
 CONFIG += c++11 link_pkgconfig no_keywords
 
+TRANSLATIONS = translations/peony-qt-create-link-extension_zh_CN.ts
 #DESTDIR += ../../testdir
 
 SOURCES += \
@@ -38,3 +39,6 @@ unix {
     target.path = /usr/lib/peony-qt-extensions
     INSTALLS += target
 }
+
+RESOURCES += \
+    peony-qt-create-link.qrc

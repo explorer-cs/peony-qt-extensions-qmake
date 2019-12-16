@@ -5,11 +5,17 @@
 
 #include <QStandardPaths>
 #include <QFileDialog>
+#include <QTranslator>
+#include <QApplication>
 
 using namespace Peony;
 
 CreateLinkMenuPlugin::CreateLinkMenuPlugin(QObject *parent) : QObject (parent)
 {
+    QTranslator *t = new QTranslator(this);
+    qDebug()<<"system().name:"<<QLocale::system().name();
+    qDebug()<<"\n\n\n\n\n\n\ntranslate:"<<t->load(":/translations/peony-qt-create-link-extension_"+QLocale::system().name());
+    QApplication::installTranslator(t);
 }
 
 QList<QAction *> CreateLinkMenuPlugin::menuActions(Types types, const QString &uri, const QStringList &selectionUris)
