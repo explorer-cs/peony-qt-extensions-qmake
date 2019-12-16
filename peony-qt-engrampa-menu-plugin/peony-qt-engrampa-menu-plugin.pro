@@ -28,7 +28,7 @@ PKGCONFIG += peony-qt
 
 TRANSLATIONS = translations/peony-qt-engrampa-menu-extension_zh_CN.ts
 
-DESTDIR += ../../testdir
+#DESTDIR += ../../testdir
 
 SOURCES += \
     engrampa-menu-plugin.cpp
