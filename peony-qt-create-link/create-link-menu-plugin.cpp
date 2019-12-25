@@ -17,13 +17,15 @@
  * along with this library.  If not, see <https://www.gnu.org/licenses/>.
  *
  * Authors: Yue Lan <lanyue@kylinos.cn>
- *
+ * Authors: Meihong <hemeihong@kylinos.cn>
  */
 
 #include "create-link-menu-plugin.h"
 
 #include <file-operation-manager.h>
 #include <file-link-operation.h>
+#include <file-info.h>
+#include <gio/gio.h>
 
 #include <QStandardPaths>
 #include <QFileDialog>
@@ -46,6 +48,11 @@ QList<QAction *> CreateLinkMenuPlugin::menuActions(Types types, const QString &u
     if (types == MenuPluginInterface::DesktopWindow || types == MenuPluginInterface::DirectoryView) {
         if (selectionUris.count() == 1) {
             auto createLinkToDesktop = new QAction(QIcon::fromTheme("emblem-symbolic-link"), tr("Create Link to Desktop"));
+            auto info = FileInfo::fromUri(selectionUris.first(), false);
+            //special type mountable, or isVirtual then return
+            if (selectionUris.first().startsWith("computer:///") || info->isVirtual())
+                return l;
+
             connect(createLinkToDesktop, &QAction::triggered, [=](){
                 QUrl src = selectionUris.first();
                 QString desktopUri = "file://" + QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
