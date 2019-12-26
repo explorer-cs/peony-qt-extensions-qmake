@@ -23,11 +23,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 PKGCONFIG +=gio-2.0 glib-2.0 gio-unix-2.0 peony-qt gtk+-2.0
-CONFIG += c++11 link_pkgconfig no_keywords
+CONFIG += c++11 link_pkgconfig no_keywords plugin
 
 TRANSLATIONS = translations/gtk2-style-enhanced-extension_zh_CN.ts
 
-#DESTDIR += ../../testdir
+DESTDIR += ../../testdir
 
 SOURCES += \
         gtk2-style-enhanced-plugin.cpp

@@ -23,10 +23,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 PKGCONFIG +=gio-2.0 glib-2.0 gio-unix-2.0 peony-qt
-CONFIG += c++11 link_pkgconfig no_keywords
+CONFIG += c++11 link_pkgconfig no_keywords plugin
 LIBS += -L$$PWD/../../libpeony-qt/ -lpeony-qt
 
-#DESTDIR += ../../testdir
+DESTDIR += ../../testdir
 
 SOURCES += \
         mate-terminal-menu-plugin.cpp
