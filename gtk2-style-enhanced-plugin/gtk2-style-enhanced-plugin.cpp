@@ -28,6 +28,8 @@
 #include <QApplication>
 #include <QTranslator>
 
+#include <glib.h>
+
 #include <QDebug>
 
 using namespace Peony;
@@ -63,6 +65,11 @@ Gtk2StyleEnhancedPlugin::Gtk2StyleEnhancedPlugin(QObject *parent) : QObject(pare
     m_timer->setInterval(5000);
     m_timer->setSingleShot(false);
     connect(m_timer, &QTimer::timeout, this, [=](){
+        //check QT_QPA_PLATFORMTHEME
+        QString var = g_getenv("QT_QPA_PLATFORMTHEME");
+        if (!var.contains("gtk"))
+            return;
+
         GtkSettings *settings = gtk_settings_get_default();
         if (!GTK_IS_SETTINGS(settings))
             return;
